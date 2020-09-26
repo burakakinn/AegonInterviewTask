@@ -14,11 +14,11 @@ public class Survey extends BaseEntity {
     private String question;
 
     @Column(nullable = false, unique = true)
-    public String getName() {
+    public String getTopic() {
         return topic;
     }
 
-    public void setName(String topic) {
+    public void setTopic(String topic) {
         this.topic = topic;
     }
 

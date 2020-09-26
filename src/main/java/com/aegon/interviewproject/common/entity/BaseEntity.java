@@ -16,6 +16,7 @@ public class BaseEntity implements Serializable {
     @GeneratedValue (generator="uuid")
     @GenericGenerator(name="uuid", strategy="org.hibernate.id.UUIDGenerator")
     @Column (name="id", updatable=false, nullable=false)
+    @Access(AccessType.FIELD)
     public UUID getId() {
         return id;
     }
