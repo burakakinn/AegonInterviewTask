@@ -1,18 +1,22 @@
 package com.aegon.interviewproject.common.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.*;
 
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
-    private int id;
+    private UUID id;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Access(AccessType.FIELD)
-    public int getId() {
+    @GeneratedValue (generator="uuid")
+    @GenericGenerator(name="uuid", strategy="org.hibernate.id.UUIDGenerator")
+    @Column (name="id", updatable=false, nullable=false)
+    public UUID getId() {
         return id;
     }
 
@@ -20,7 +24,7 @@ public class BaseEntity implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + id.hashCode();
         return result;
     }
 
@@ -36,6 +40,6 @@ public class BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return Integer.toString(id);
+        return id.toString();
     }
 }
