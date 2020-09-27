@@ -8,7 +8,7 @@ public class AnswerResultDTO {
 
     @NotNull
     @NotBlank
-    private UUID submitID;
+    private UUID submitId;
     @NotNull
     @NotBlank
     private int score;
@@ -16,12 +16,12 @@ public class AnswerResultDTO {
     @NotBlank
     private String feedback;
 
-    public UUID getSubmitID() {
-        return submitID;
+    public UUID getSubmitId() {
+        return submitId;
     }
 
-    public void setSubmitID(UUID submitID) {
-        this.submitID = submitID;
+    public void setSubmitId(UUID submitId) {
+        this.submitId = submitId;
     }
 
     public int getScore() {

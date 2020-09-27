@@ -5,10 +5,9 @@ import com.aegon.interviewproject.api.survey.controller.mapper.SurveyMapper;
 import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import com.aegon.interviewproject.api.survey.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/survey")
@@ -21,6 +20,7 @@ public class SurveyController {
     private SurveyMapper surveyMapper;
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public Survey add(@RequestBody SurveyDTO surveyDTO){
         return surveyService.save(surveyMapper.toEntity(surveyDTO));
     }
