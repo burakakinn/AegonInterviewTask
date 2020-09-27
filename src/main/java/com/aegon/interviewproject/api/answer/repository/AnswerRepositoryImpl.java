@@ -25,12 +25,13 @@ public class AnswerRepositoryImpl extends QuerydslRepositorySupport implements A
     }
 
     @Override
-    public List<AnswerResultDTO> findByTopicId(UUID topicId) {
-        List<Answer> answerList = (List<Answer>) from(QAnswer.answer).where(QSurvey.survey.id.eq(topicId)).fetchAll();
-        List<AnswerResultDTO> result = new ArrayList<>();
-        for(Answer answer : answerList){
-            result.add(answerResultMapper.toDTO(answer));
-        }
-        return result;
+    public List<Answer> findByTopicId(UUID topicId) {
+//        List<Answer> answerList = from(QAnswer.answer).where(QSurvey.survey.topic.eq("application2")).fetch();
+//        List<AnswerResultDTO> result = new ArrayList<>();
+//        for(Answer answer : answerList){
+//            result.add(answerResultMapper.toDTO(answer));
+//            System.out.println(answer.getFeedback());
+//        }
+        return from(QAnswer.answer).fetch();
     }
 }

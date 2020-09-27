@@ -5,6 +5,8 @@ import com.aegon.interviewproject.api.answer.controller.dto.AnswerResultDTO;
 import com.aegon.interviewproject.api.answer.controller.mapper.AnswerMapper;
 import com.aegon.interviewproject.api.answer.repository.domain.Answer;
 import com.aegon.interviewproject.api.answer.service.AnswerService;
+import com.aegon.interviewproject.api.survey.repository.domain.Survey;
+import com.aegon.interviewproject.api.survey.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,9 @@ public class AnswerController {
     @Autowired
     private AnswerMapper answerMapper;
 
+    @Autowired
+    private SurveyService surveyService;
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     private Answer add(@RequestBody AnswerDTO answerDTO){
@@ -30,7 +35,14 @@ public class AnswerController {
 
     @GetMapping("/list/{topicId}")
     @ResponseStatus(HttpStatus.OK)
-    private List<AnswerResultDTO> list(@PathVariable UUID topicId){
+    private List<Answer> list(@PathVariable UUID topicId){
         return answerService.findByTopicId(topicId);
+    }
+
+    @GetMapping("/list2/{topicId}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<Answer> list2(@PathVariable UUID topicId){
+        Survey survey = surveyService.findById(topicId);
+        return answerService.findBySurvey(survey);
     }
 }
