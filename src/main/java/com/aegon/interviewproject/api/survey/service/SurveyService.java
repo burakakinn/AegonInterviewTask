@@ -5,6 +5,8 @@ import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class SurveyService {
 
@@ -13,5 +15,9 @@ public class SurveyService {
 
     public Survey save(Survey survey) {
         return repository.save(survey);
+    }
+
+    public Survey findById(UUID id){
+        return repository.findById(id).orElse(null);
     }
 }
