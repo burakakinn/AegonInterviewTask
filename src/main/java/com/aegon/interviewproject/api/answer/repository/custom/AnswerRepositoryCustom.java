@@ -5,7 +5,6 @@ import com.aegon.interviewproject.api.answer.repository.domain.Answer;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
-import java.util.UUID;
 
 @NoRepositoryBean
 public interface AnswerRepositoryCustom {

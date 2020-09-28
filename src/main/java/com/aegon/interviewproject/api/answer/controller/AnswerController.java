@@ -34,14 +34,35 @@ public class AnswerController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     private Answer add(@RequestBody AnswerDTO answerDTO){
-        return answerService.save(answerMapper.toEntity(answerDTO));
+        Answer answer = answerService.save(answerMapper.toEntity(answerDTO));
+        // npm operations
+        Survey survey = surveyService.findById(answer.getSurvey().getId());
+        if(answer.getScore() <= 6){
+            survey.setDetractors(survey.getDetractors()+1);
+        } else if(answer.getScore() >= 9){
+            survey.setPromoters(survey.getPromoters()+1);
+        } else {
+            survey.setPassives(survey.getPassives()+1);
+        }
+        double promoters = (double) survey.getPromoters();
+        double detractors = (double) survey.getDetractors();
+        double passives = (double) survey.getPassives();
+        survey.setScore(((promoters-detractors)/(promoters+detractors+passives))*100);
+        surveyService.update(survey);
+        return answer;
     }
 
     // using querydsl
     @GetMapping("/list/{topicId}")
     @ResponseStatus(HttpStatus.OK)
-    private List<Answer> list(@PathVariable int topicId){
-        return answerService.findByTopicId(topicId);
+    private List<AnswerResultDTO> list(@PathVariable int topicId){
+        Survey survey = surveyService.findById(topicId);
+        List<Answer> answerList = answerService.findBySurvey(survey);
+        List<AnswerResultDTO> result = new ArrayList<>();
+        for(Answer answer : answerList){
+            result.add(answerResultMapper.toDTO(answer));
+        }
+        return result;
     }
 
     @GetMapping("/list2/{topicId}")

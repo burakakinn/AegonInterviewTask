@@ -25,4 +25,15 @@ public class SurveyService {
     public Survey findById(int id){
         return repository.findById(id).orElse(null);
     }
+
+    public Survey update(Survey survey){
+        Survey existingSurvey = repository.findById(survey.getId()).orElse(null);
+        existingSurvey.setPromoters(survey.getPromoters());
+        existingSurvey.setDetractors(survey.getDetractors());
+        existingSurvey.setPassives(survey.getPassives());
+        existingSurvey.setScore(survey.getScore());
+        existingSurvey.setQuestion(survey.getQuestion());
+        existingSurvey.setTopic(survey.getTopic());
+        return repository.save(existingSurvey);
+    }
 }

@@ -3,7 +3,6 @@ package com.aegon.interviewproject.api.answer.controller.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.UUID;
 
 public class AnswerResultDTO {
 
