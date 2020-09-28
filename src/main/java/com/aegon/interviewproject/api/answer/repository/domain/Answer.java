@@ -2,6 +2,7 @@ package com.aegon.interviewproject.api.answer.repository.domain;
 
 import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import com.aegon.interviewproject.common.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.PositiveOrZero;
@@ -16,6 +17,7 @@ public class Answer extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id",nullable = false)
+    @JsonIgnore // for rest api with querydsl
     public Survey getSurvey() {
         return survey;
     }
