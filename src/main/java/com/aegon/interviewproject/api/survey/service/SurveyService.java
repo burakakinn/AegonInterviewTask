@@ -15,9 +15,6 @@ public class SurveyService {
     @Autowired
     private SurveyRepository repository;
 
-    @Autowired
-    private SurveyMapper surveyMapper;
-
     public Survey save(Survey survey) {
         return repository.save(survey);
     }

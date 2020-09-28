@@ -57,7 +57,7 @@ public class AnswerController {
     @ResponseStatus(HttpStatus.OK)
     private List<AnswerResultDTO> list(@PathVariable int topicId){
         Survey survey = surveyService.findById(topicId);
-        List<Answer> answerList = answerService.findBySurvey(survey);
+        List<Answer> answerList = answerService.findByTopicId(survey.getId());
         List<AnswerResultDTO> result = new ArrayList<>();
         for(Answer answer : answerList){
             result.add(answerResultMapper.toDTO(answer));
