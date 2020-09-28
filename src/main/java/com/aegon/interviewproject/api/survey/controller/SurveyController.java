@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/survey")
 public class SurveyController {
@@ -24,4 +26,16 @@ public class SurveyController {
     public Survey add(@RequestBody SurveyDTO surveyDTO){
         return surveyService.save(surveyMapper.toEntity(surveyDTO));
     }
+
+    @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public SurveyDTO get(@PathVariable int id){
+        return surveyMapper.toDTO(surveyService.findById(id));
+    }
+
+//    @GetMapping("/getScore")
+//    @ResponseStatus(HttpStatus.OK)
+//    public SurveyScore getScore(){
+//
+//    }
 }

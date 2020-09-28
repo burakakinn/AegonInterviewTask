@@ -25,7 +25,7 @@ public class AnswerService {
         return answerRepository.save(answer);
     }
 
-    public List<Answer> findByTopicId(UUID topicId){
+    public List<Answer> findByTopicId(int topicId){
         return answerRepositoryImpl.findByTopicId(topicId);
     }
 

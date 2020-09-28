@@ -25,7 +25,7 @@ public class AnswerRepositoryImpl extends QuerydslRepositorySupport implements A
     }
 
     @Override
-    public List<Answer> findByTopicId(UUID topicId) {
+    public List<Answer> findByTopicId(int topicId) {
 //        List<Answer> answerList = from(QAnswer.answer).where(QSurvey.survey.topic.eq("application2")).fetch();
 //        List<AnswerResultDTO> result = new ArrayList<>();
 //        for(Answer answer : answerList){

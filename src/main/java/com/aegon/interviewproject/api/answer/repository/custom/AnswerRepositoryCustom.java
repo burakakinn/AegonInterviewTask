@@ -10,5 +10,5 @@ import java.util.UUID;
 @NoRepositoryBean
 public interface AnswerRepositoryCustom {
 
-    List<Answer> findByTopicId(UUID topicId);
+    List<Answer> findByTopicId(int topicId);
 }

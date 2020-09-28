@@ -41,13 +41,13 @@ public class AnswerController {
     // using querydsl
     @GetMapping("/list/{topicId}")
     @ResponseStatus(HttpStatus.OK)
-    private List<Answer> list(@PathVariable UUID topicId){
+    private List<Answer> list(@PathVariable int topicId){
         return answerService.findByTopicId(topicId);
     }
 
     @GetMapping("/list2/{topicId}")
     @ResponseStatus(HttpStatus.OK)
-    private List<AnswerResultDTO> list2(@PathVariable UUID topicId){
+    private List<AnswerResultDTO> list2(@PathVariable int topicId){
         Survey survey = surveyService.findById(topicId);
         List<Answer> answerList = answerService.findBySurvey(survey);
         List<AnswerResultDTO> result = new ArrayList<>();

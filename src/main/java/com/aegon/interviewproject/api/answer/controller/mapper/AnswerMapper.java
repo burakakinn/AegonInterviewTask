@@ -25,12 +25,12 @@ public abstract class AnswerMapper {
     public abstract AnswerDTO toDTO(Answer answer);
 
     @Named("idToSurvey")
-    Survey idToSurvey(UUID id){ // method should be default, not public or private
+    Survey idToSurvey(int id){ // method should be default, not public or private
         return surveyService.findById(id);
     }
 
     @Named("surveyToId")
-    UUID surveyToId(Survey survey){
+    int surveyToId(Survey survey){
         return survey.getId();
     }
 }

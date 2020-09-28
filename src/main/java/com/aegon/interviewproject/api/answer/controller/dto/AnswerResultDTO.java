@@ -2,25 +2,27 @@ package com.aegon.interviewproject.api.answer.controller.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.UUID;
 
 public class AnswerResultDTO {
 
     @NotNull
     @NotBlank
-    private UUID submitId;
+    private int submitId; // could be UUID
     @NotNull
     @NotBlank
+    @PositiveOrZero
     private int score;
     @NotNull
     @NotBlank
     private String feedback;
 
-    public UUID getSubmitId() {
+    public int getSubmitId() {
         return submitId;
     }
 
-    public void setSubmitId(UUID submitId) {
+    public void setSubmitId(int submitId) {
         this.submitId = submitId;
     }
 

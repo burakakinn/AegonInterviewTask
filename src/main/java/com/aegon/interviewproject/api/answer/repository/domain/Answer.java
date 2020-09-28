@@ -4,6 +4,7 @@ import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import com.aegon.interviewproject.common.entity.BaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "answer")
@@ -24,6 +25,7 @@ public class Answer extends BaseEntity {
     }
 
     @Column(nullable = false)
+    @PositiveOrZero
     public int getScore() {
         return score;
     }

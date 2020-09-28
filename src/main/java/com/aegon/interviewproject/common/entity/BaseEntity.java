@@ -10,14 +10,21 @@ import javax.persistence.*;
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
-    private UUID id;
+    private int id; // could be UUID
+
+//    @Id
+//    @GeneratedValue (generator="uuid")
+//    @GenericGenerator(name="uuid", strategy="org.hibernate.id.UUIDGenerator")
+//    @Column (name="id", updatable=false, nullable=false)
+//    @Access(AccessType.FIELD)
+//    public UUID getId() {
+//        return id;
+//    }
 
     @Id
-    @GeneratedValue (generator="uuid")
-    @GenericGenerator(name="uuid", strategy="org.hibernate.id.UUIDGenerator")
-    @Column (name="id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Access(AccessType.FIELD)
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
@@ -25,7 +32,7 @@ public class BaseEntity implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id.hashCode();
+        result = prime * result + id;
         return result;
     }
 
@@ -41,6 +48,6 @@ public class BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return id.toString();
+        return Integer.toString(id);
     }
 }

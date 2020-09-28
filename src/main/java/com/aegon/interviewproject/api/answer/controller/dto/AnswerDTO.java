@@ -4,25 +4,27 @@ import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.UUID;
 
 public class AnswerDTO {
 
     @NotNull
     @NotBlank
-    private UUID topicId;
+    private int topicId; // could be UUID
     @NotNull
     @NotBlank
+    @PositiveOrZero
     private int score;
     @NotNull
     @NotBlank
     private String feedback;
 
-    public UUID getTopicId() {
+    public int getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(UUID topicId) {
+    public void setTopicId(int topicId) {
         this.topicId = topicId;
     }
 
