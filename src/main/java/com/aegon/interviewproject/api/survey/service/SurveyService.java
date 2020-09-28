@@ -7,6 +7,7 @@ import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -32,5 +33,9 @@ public class SurveyService {
         existingSurvey.setQuestion(survey.getQuestion());
         existingSurvey.setTopic(survey.getTopic());
         return repository.save(existingSurvey);
+    }
+
+    public List<Survey> getAll(){
+        return repository.findAll();
     }
 }

@@ -1,6 +1,6 @@
 package com.aegon.interviewproject.api.survey.controller.dto;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 import javax.validation.constraints.NotBlank;
 
