@@ -76,4 +76,15 @@ public class AnswerController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(answerResultDTOList);
     }
+
+
+    @GetMapping("/listAll")
+    private ResponseEntity<List<AnswerResultDTO>> listAll(){
+        List<Answer> answerList = answerService.findAll();
+        List<AnswerResultDTO> answerResultDTOList = new ArrayList<>();
+        for(Answer answer : answerList){
+            answerResultDTOList.add(answerResultMapper.toDTO(answer));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(answerResultDTOList);
+    }
 }

@@ -9,10 +9,10 @@
     <!-- Custom styles for this template -->
     <link href="/common.css" rel="stylesheet">
     <script>
-        var baseurl = "http://localhost:8080/answers";
+        var baseurl = "http://localhost:8080/answer";
         function loadResults(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET",baseurl + "/list/1",true);
+            xmlhttp.open("GET",baseurl + "/listAll",true);
             xmlhttp.onreadystatechange = function() {
                 if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
                     var results = JSON.parse(xmlhttp.responseText);

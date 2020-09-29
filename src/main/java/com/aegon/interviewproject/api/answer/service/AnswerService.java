@@ -30,4 +30,9 @@ public class AnswerService {
     public List<Answer> findBySurvey(Survey survey){
         return answerRepository.findBySurvey(survey);
     }
+
+    public List<Answer> findAll(){
+        return answerRepository.findAll();
+    }
+
 }
