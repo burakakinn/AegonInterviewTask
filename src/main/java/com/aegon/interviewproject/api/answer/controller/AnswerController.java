@@ -54,7 +54,7 @@ public class AnswerController {
 
     // using querydsl
     @GetMapping("/list/{topicId}")
-    private ResponseEntity<List<AnswerResultDTO>> llist(@PathVariable int topicId){
+    private ResponseEntity<List<AnswerResultDTO>> list(@PathVariable int topicId){
         Survey survey = surveyService.findById(topicId);
         List<Answer> answerList = answerService.findByTopicId(survey.getId());
         List<AnswerResultDTO> result = new ArrayList<>();
@@ -64,6 +64,7 @@ public class AnswerController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    // using spring boot naming method
     @GetMapping("/list2/{topicId}")
     private ResponseEntity<List<AnswerResultDTO>> list2(@PathVariable int topicId){
         Survey survey = surveyService.findById(topicId);
