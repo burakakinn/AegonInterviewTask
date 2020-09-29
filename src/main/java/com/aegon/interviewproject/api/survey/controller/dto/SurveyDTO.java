@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import javax.validation.constraints.NotBlank;
 
+// DTO for creating survey in user side
 public class SurveyDTO {
 
     @NotNull

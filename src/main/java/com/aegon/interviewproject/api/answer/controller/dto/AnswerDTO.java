@@ -5,8 +5,8 @@ import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.UUID;
 
+// DTO for getting answer from user
 public class AnswerDTO {
 
     @NotNull

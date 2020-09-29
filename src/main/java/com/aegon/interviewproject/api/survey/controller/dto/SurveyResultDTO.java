@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+// DTO for listing survey topics with NPM score
 public class SurveyResultDTO {
     private int topicId;
     private String topicName;

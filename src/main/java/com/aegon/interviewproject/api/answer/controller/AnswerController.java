@@ -35,7 +35,7 @@ public class AnswerController {
     @PostMapping("/add")
     private ResponseEntity<Answer> add(@RequestBody AnswerDTO answerDTO){
         Answer answer = answerService.save(answerMapper.toEntity(answerDTO));
-        // npm operations
+        // ========================= NPM LOGIC ===========================
         Survey survey = surveyService.findById(answer.getSurvey().getId());
         if(answer.getScore() <= 6){
             survey.setDetractors(survey.getDetractors()+1);
@@ -49,6 +49,7 @@ public class AnswerController {
         double passives = (double) survey.getPassives();
         survey.setScore(((promoters-detractors)/(promoters+detractors+passives))*100);
         surveyService.update(survey);
+        // ======================= NPM LOGIC END ==========================
         return ResponseEntity.status(HttpStatus.OK).body(answer);
     }
 
@@ -57,11 +58,11 @@ public class AnswerController {
     private ResponseEntity<List<AnswerResultDTO>> list(@PathVariable int topicId){
         Survey survey = surveyService.findById(topicId);
         List<Answer> answerList = answerService.findByTopicId(survey.getId());
-        List<AnswerResultDTO> result = new ArrayList<>();
+        List<AnswerResultDTO> answerResultDTOList = new ArrayList<>();
         for(Answer answer : answerList){
-            result.add(answerResultMapper.toDTO(answer));
+            answerResultDTOList.add(answerResultMapper.toDTO(answer));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(answerResultDTOList);
     }
 
     // using spring boot naming method
@@ -69,10 +70,10 @@ public class AnswerController {
     private ResponseEntity<List<AnswerResultDTO>> list2(@PathVariable int topicId){
         Survey survey = surveyService.findById(topicId);
         List<Answer> answerList = answerService.findBySurvey(survey);
-        List<AnswerResultDTO> result = new ArrayList<>();
+        List<AnswerResultDTO> answerResultDTOList = new ArrayList<>();
         for(Answer answer : answerList){
-            result.add(answerResultMapper.toDTO(answer));
+            answerResultDTOList.add(answerResultMapper.toDTO(answer));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(answerResultDTOList);
     }
 }

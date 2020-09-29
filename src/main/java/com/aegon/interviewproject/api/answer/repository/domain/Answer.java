@@ -16,8 +16,8 @@ public class Answer extends BaseEntity {
     private String feedback;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id",nullable = false)
-    @JsonIgnore // for rest api with querydsl
+    @JoinColumn(name = "topic_id",nullable = false) 
+    @JsonIgnore // for rest api to work with querydsl
     public Survey getSurvey() {
         return survey;
     }
