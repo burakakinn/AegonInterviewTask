@@ -1,6 +1,5 @@
 package com.aegon.interviewproject.api.survey.controller.mapper;
 
-import com.aegon.interviewproject.api.survey.controller.dto.SurveyDTO;
 import com.aegon.interviewproject.api.survey.controller.dto.SurveyResultDTO;
 import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import org.mapstruct.Mapper;

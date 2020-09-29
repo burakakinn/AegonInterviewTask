@@ -2,15 +2,12 @@ package com.aegon.interviewproject.api.answer.controller.mapper;
 
 import com.aegon.interviewproject.api.answer.controller.dto.AnswerDTO;
 import com.aegon.interviewproject.api.answer.repository.domain.Answer;
-import com.aegon.interviewproject.api.survey.controller.dto.SurveyDTO;
 import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import com.aegon.interviewproject.api.survey.service.SurveyService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.UUID;
 
 @Mapper(componentModel = "spring")
 public abstract class AnswerMapper {

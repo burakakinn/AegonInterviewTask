@@ -8,6 +8,7 @@ import com.aegon.interviewproject.api.survey.repository.domain.Survey;
 import com.aegon.interviewproject.api.survey.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,35 +28,26 @@ public class SurveyController {
     private SurveyResultMapper surveyResultMapper;
 
     @PostMapping("/add")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Survey add(@RequestBody SurveyDTO surveyDTO){
+    public ResponseEntity<Survey> add(@RequestBody SurveyDTO surveyDTO){
         Survey survey = surveyMapper.toEntity(surveyDTO);
         survey.setDetractors(0);
         survey.setPromoters(0);
         survey.setPassives(0);
-        return surveyService.save(survey);
+        return ResponseEntity.status(HttpStatus.OK).body(surveyService.save(survey));
     }
 
     @GetMapping("/get/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public SurveyDTO get(@PathVariable int id){
-        return surveyMapper.toDTO(surveyService.findById(id));
+    public ResponseEntity<SurveyDTO> get(@PathVariable int id){
+        return ResponseEntity.status(HttpStatus.OK).body(surveyMapper.toDTO(surveyService.findById(id)));
     }
 
     @GetMapping("/getResults")
-    @ResponseStatus(HttpStatus.OK)
-    public List<SurveyResultDTO> getResults(){
+    public ResponseEntity<List<SurveyResultDTO>> getResults(){
         List<Survey> allSurveys = surveyService.getAll();
         List<SurveyResultDTO> allSurveyResultDTOs = new ArrayList<>();
         for(Survey survey : allSurveys){
             allSurveyResultDTOs.add(surveyResultMapper.toDTO(survey));
         }
-        return allSurveyResultDTOs;
+        return ResponseEntity.status(HttpStatus.OK).body(allSurveyResultDTOs);
     }
-
-//    @GetMapping("/getScore")
-//    @ResponseStatus(HttpStatus.OK)
-//    public SurveyScore getScore(){
-//
-//    }
 }

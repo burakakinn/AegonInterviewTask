@@ -41,26 +41,18 @@
 
     <section class="jumbotron text-center">
         <div class="container">
-            <h1>What do you want to do ?</h1>
-            <p class="lead text-muted">Choose below.</p>
-            <p>
-                <form style="display: inline" action="/createSurvey" method="get">
-                    <button style="display: inline" class="btn btn-primary my-2" type="submit">Create Survey</button>
-                </form>
-                <form style="display: inline" action="/submitSurvey" method="get">
-                    <button style="display: inline" class="btn btn-primary my-2" type="submit">Submit Survey</button>
-                </form>
-                <form style="display: inline" action="/surveyAnswers" method="get">
-                    <button style="display: inline" class="btn btn-primary my-2" type="submit">List Survey Answers</button>
-                </form>
-                <form style="display: inline" action="/surveyTopics" method="get">
-                    <button style="display: inline" class="btn btn-primary my-2" type="submit">List Survey Topics</button>
-                </form>
+            <form action="/index" method="get">
+                <button style="display: inline" class="btn btn-primary my-2" type="submit">Main Page</button>
+            </form>
+            <form style="position: center">
+                <button style="display: inline" class="btn btn-secondary my-2" type="submit">List Survey Topics</button>
+            </form>
             </p>
         </div>
     </section>
 </main>
 
+</body>
 <footer class="text-muted" id="footer">
     <div class="container">
         <p>Customer Satisfaction Survey &copy; Bootstrap</p>
