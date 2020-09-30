@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="/common.css" rel="stylesheet">
+    <script src="submitSurvey.js"></script>
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -32,12 +33,35 @@
 </nav>
 
 <main role="main">
-
     <section class="jumbotron text-center">
         <div class="container">
-            <form style="position: center">
-                <button style="display: inline" class="btn btn-secondary my-2" type="submit">Submit Survey</button>
-            </form>
+            <div style="margin-bottom: 10px" id="allTopics"></div>
+            <div style="margin-bottom: 10px" id="topic"></div>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary">0</button>
+                    <button type="button" class="btn btn-secondary">1</button>
+                    <button type="button" class="btn btn-secondary">2</button>
+                    <button type="button" class="btn btn-secondary">3</button>
+                    <button type="button" class="btn btn-secondary">4</button>
+                    <button type="button" class="btn btn-secondary">5</button>
+                    <button type="button" class="btn btn-secondary">6</button>
+                    <button type="button" class="btn btn-secondary">7</button>
+                    <button type="button" class="btn btn-secondary">8</button>
+                    <button type="button" class="btn btn-secondary">9</button>
+                    <button type="button" class="btn btn-secondary">10</button>
+                </div>
+            </div>
+            <div style="margin-bottom: 10px" id="question"></div>
+            <div style="margin-bottom: 10px" class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Answer</span>
+                </div>
+                <textarea id="answerInput" class="form-control" aria-label="Answer"></textarea>
+            </div>
+            <div style="margin-bottom: 10px">
+                <button onclick="submitSurvey()" class="btn btn-secondary my-2" type="submit">Submit Survey</button>
+            </div>
         </div>
     </section>
 </main>

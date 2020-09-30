@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="/common.css" rel="stylesheet">
+    <script src="createSurvey.js"></script>
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -34,8 +35,20 @@
 
     <section class="jumbotron text-center">
         <div class="container">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Topic</span>
+                </div>
+                <input id="topicInput" type="text" class="form-control" placeholder="Topic" aria-label="Topic" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Question</span>
+                </div>
+                <input id="questionInput" type="text" class="form-control" placeholder="Question" aria-label="Question" aria-describedby="basic-addon2">
+            </div>
             <form style="position: center">
-                <button style="display: inline" class="btn btn-secondary my-2" type="submit">Create Survey</button>
+                <button onclick="addSurvey();" style="display: inline" class="btn btn-secondary my-2" type="submit">Create Survey</button>
             </form>
         </div>
     </section>
