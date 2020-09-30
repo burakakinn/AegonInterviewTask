@@ -9,4 +9,5 @@ function addSurvey(){
     httprequest.open("POST", baseurl + "/add",true);
     httprequest.setRequestHeader("Content-Type", "application/json");
     httprequest.send(json);
+    alert("Survey added.");
 }
