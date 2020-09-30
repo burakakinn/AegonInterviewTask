@@ -33,7 +33,7 @@ public class AnswerController {
     private SurveyService surveyService;
 
     @PostMapping("/add")
-    private ResponseEntity<Answer> add(@RequestBody AnswerDTO answerDTO){
+    private ResponseEntity<Integer> add(@RequestBody AnswerDTO answerDTO){
         Answer answer = answerService.save(answerMapper.toEntity(answerDTO));
         // ========================= NPM LOGIC ===========================
         Survey survey = surveyService.findById(answer.getSurvey().getId());
@@ -50,7 +50,7 @@ public class AnswerController {
         survey.setScore(((promoters-detractors)/(promoters+detractors+passives))*100);
         surveyService.update(survey);
         // ======================= NPM LOGIC END ==========================
-        return ResponseEntity.status(HttpStatus.OK).body(answer);
+        return ResponseEntity.status(HttpStatus.OK).body(answer.getId());
     }
 
     // using querydsl

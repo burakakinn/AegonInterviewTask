@@ -8,6 +8,13 @@ function addSurvey(){
     var httprequest = new XMLHttpRequest();
     httprequest.open("POST", baseurl + "/add",true);
     httprequest.setRequestHeader("Content-Type", "application/json");
+    httprequest.onreadystatechange = function() {
+        if (httprequest.readyState === 4 && httprequest.status === 200) {
+            alert("Survey added.");
+        } else if(httprequest.readyState === 4 && httprequest.status === 400){
+            alert("Survey already exists!")
+        }
+    };
     httprequest.send(json);
-    alert("Survey added.");
+
 }

@@ -30,12 +30,20 @@ public class SurveyController {
     private SurveyResultMapper surveyResultMapper;
 
     @PostMapping("/add")
-    public ResponseEntity<Survey> add(@RequestBody SurveyDTO surveyDTO){
-        Survey survey = surveyMapper.toEntity(surveyDTO);
-        survey.setDetractors(0);
-        survey.setPromoters(0);
-        survey.setPassives(0);
-        return ResponseEntity.status(HttpStatus.OK).body(surveyService.save(survey));
+    public ResponseEntity<Integer> add(@RequestBody SurveyDTO surveyDTO){
+        try {
+            if (surveyService.findByTopic(surveyDTO.getTopic()) != null) {
+                throw new Exception();
+            }
+            Survey survey = surveyMapper.toEntity(surveyDTO);
+            survey.setDetractors(0);
+            survey.setPromoters(0);
+            survey.setPassives(0);
+            return ResponseEntity.status(HttpStatus.OK).body(surveyService.save(survey).getId());
+        } catch (Exception e) {
+            System.err.println("Survey already exists!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1);
+        }
     }
 
     @GetMapping("/{id}")

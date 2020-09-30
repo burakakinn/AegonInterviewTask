@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SurveyService {
@@ -21,7 +22,11 @@ public class SurveyService {
         return repository.findById(id).orElse(null);
     }
 
-    public Survey update(Survey survey){
+    public Survey findByTopic(String name){
+        return repository.findByTopic(name);
+    }
+
+    public Integer update(Survey survey){
         Survey existingSurvey = repository.findById(survey.getId()).orElse(null);
         existingSurvey.setPromoters(survey.getPromoters());
         existingSurvey.setDetractors(survey.getDetractors());
@@ -29,7 +34,7 @@ public class SurveyService {
         existingSurvey.setScore(survey.getScore());
         existingSurvey.setQuestion(survey.getQuestion());
         existingSurvey.setTopic(survey.getTopic());
-        return repository.save(existingSurvey);
+        return repository.save(existingSurvey).getId();
     }
 
     public List<Survey> getAll(){
