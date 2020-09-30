@@ -43,16 +43,6 @@ public class SurveyController {
         return ResponseEntity.status(HttpStatus.OK).body(surveyMapper.toDTO(surveyService.findById(id)));
     }
 
-    @GetMapping("/allTopics")
-    public ResponseEntity<List<String>> getAll(){
-        List<Survey> surveyList = surveyService.getAll();
-        List<String> allTopics = new ArrayList<>();
-        for(Survey survey : surveyList){
-            allTopics.add(survey.getTopic());
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(allTopics);
-    }
-
     @GetMapping("/allResults")
     public ResponseEntity<List<SurveyResultDTO>> getResults(){
         List<Survey> allSurveys = surveyService.getAll();
