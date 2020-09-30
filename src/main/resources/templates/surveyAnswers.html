@@ -8,32 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="/common.css" rel="stylesheet">
-    <script>
-        var baseurl = "http://localhost:8080/answer";
-        function loadResults(){
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET",baseurl + "/listAll",true);
-            xmlhttp.onreadystatechange = function() {
-                if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
-                    var results = JSON.parse(xmlhttp.responseText);
-                    var tbltop = `<table class="table"><thead>
-			    <tr><th scope="col">SUBMIT ID</th><th scope="col">SCORE</th><th scope="col">FEEDBACK</th></tr></thead><tbody>`;
-                    //main table content we fill from data from the rest call
-                    var main ="";
-                    for (i = 0; i < results.length; i++){
-                        main += "<tr><td>"+results[i].submitId+"</td><td>"+results[i].score+"</td><td>"+results[i].feedback+"</td></tr>";
-                    }
-                    var tblbottom = "</tbody></table>";
-                    var tbl = tbltop + main + tblbottom;
-                    document.getElementById("surveyAnswers").innerHTML = tbl;
-                }
-            };
-            xmlhttp.send();
-        }
-        window.onload = function(){
-            loadResults();
-        }
-    </script>
+    <script src="surveyAnswers.js"></script>
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -59,10 +34,16 @@
 <main role="main">
     <section class="jumbotron text-center">
         <div class="container">
+            <button onclick='loadTopics()'>BUTTON</button>
+            <div id="allTopics"> </div>
             <div id="surveyAnswers"> </div>
         </div>
     </section>
 </main>
+
+
+
+
 </body>
 <footer class="text-muted" id="footer">
     <div class="container">

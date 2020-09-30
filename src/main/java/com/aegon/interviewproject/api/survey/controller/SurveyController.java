@@ -1,5 +1,7 @@
 package com.aegon.interviewproject.api.survey.controller;
 
+import com.aegon.interviewproject.api.answer.controller.dto.AnswerResultDTO;
+import com.aegon.interviewproject.api.answer.repository.domain.Answer;
 import com.aegon.interviewproject.api.survey.controller.dto.SurveyDTO;
 import com.aegon.interviewproject.api.survey.controller.dto.SurveyResultDTO;
 import com.aegon.interviewproject.api.survey.controller.mapper.SurveyMapper;
@@ -36,12 +38,22 @@ public class SurveyController {
         return ResponseEntity.status(HttpStatus.OK).body(surveyService.save(survey));
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SurveyDTO> get(@PathVariable int id){
         return ResponseEntity.status(HttpStatus.OK).body(surveyMapper.toDTO(surveyService.findById(id)));
     }
 
-    @GetMapping("/getResults")
+    @GetMapping("/allTopics")
+    public ResponseEntity<List<String>> getAll(){
+        List<Survey> surveyList = surveyService.getAll();
+        List<String> allTopics = new ArrayList<>();
+        for(Survey survey : surveyList){
+            allTopics.add(survey.getTopic());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(allTopics);
+    }
+
+    @GetMapping("/allResults")
     public ResponseEntity<List<SurveyResultDTO>> getResults(){
         List<Survey> allSurveys = surveyService.getAll();
         List<SurveyResultDTO> allSurveyResultDTOs = new ArrayList<>();
