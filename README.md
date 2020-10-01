@@ -53,4 +53,18 @@ Main page will be accessible in "http://localhost:8080/index".
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![mainPage](./img/mainPage.png)
+![createSurveyPage](./img/createSurveyPage.png)
+![submitSurvey](./img/submitSurvey.png)
+![listAnswers](./img/listAnswers.png)
+![surveyTopics](./img/surveyTopics.png)
+
+## Important Notes
+
+* First time using javascript.  
+* Querydsl part is under  
+"src\main\java\com\aegon\interviewproject\api\answer\repository\custom\AnswerRepositoryImpl.java"  
+* In AnswerController.java,  
+"list" method uses querydsl  
+"list2" method uses spring boot query creation from method names  
+They both do the same thing.
