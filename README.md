@@ -54,10 +54,10 @@ Main page will be accessible in "http://localhost:8080/index".
 
 ## Screenshots
 ![mainPage](./img/mainPage.png)
-![createSurveyPage](./img/createSurveyPage.png)
-![submitSurvey](./img/submitSurvey.png)
-![listAnswers](./img/listAnswers.png)
-![surveyTopics](./img/surveyTopics.png)
+![createSurveyPage](./img/createSurveyPage.PNG)
+![submitSurvey](./img/submitSurvey.PNG)
+![listAnswers](./img/listAnswers.PNG)
+![surveyTopics](./img/surveyTopics.PNG)
 
 ## Important Notes
 
