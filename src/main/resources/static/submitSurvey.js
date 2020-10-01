@@ -2,6 +2,7 @@ var baseurlSurvey = "http://localhost:8080/survey";
 var baseurlAnswer = "http://localhost:8080/answer";
 var score = 0;
 var topicId = 0;
+var scoreSelected = false;
 function loadTopics(){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET",baseurlSurvey + "/allResults",true);
@@ -29,8 +30,7 @@ function loadFields(id){
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
             var result = JSON.parse(xmlhttp.responseText);
-            document.getElementById("topic").innerHTML = "<p>How likely are you to recommend " + result.topic +" to a friend or colleague?</p>";
-            document.getElementById("question").innerHTML = "<p>"+result.question+"</p>";
+            document.getElementById("topicQuestion").innerHTML = "<p>" + result.question + "</p>";
         }
     };
     xmlhttp.send();
@@ -41,17 +41,22 @@ window.onload = function(){
 }
 
 function submitSurvey(){
-    var answer = {
-        topicId: topicId,
-        score: score,
-        feedback: document.getElementById("answerInput").value
-    };
-    var json = JSON.stringify(answer);
-    var httprequest = new XMLHttpRequest();
-    httprequest.open("POST", baseurlAnswer + "/add",true);
-    httprequest.setRequestHeader("Content-Type", "application/json");
-    httprequest.send(json);
-    alert("Survey submitted.");
+    if(scoreSelected == true){
+        var answer = {
+            topicId: topicId,
+            score: score,
+            feedback: document.getElementById("answerInput").value
+        };
+        var json = JSON.stringify(answer);
+        var httprequest = new XMLHttpRequest();
+        httprequest.open("POST", baseurlAnswer + "/add",true);
+        httprequest.setRequestHeader("Content-Type", "application/json");
+        httprequest.send(json);
+        alert("Survey submitted.");
+    } else {
+        alert("Score must be selected.")
+    }
+
 }
 
 function setScore(scoreInput){
@@ -60,4 +65,7 @@ function setScore(scoreInput){
 
 function setTopicId(id){
     topicId = id;
+}
+function setSelected(){
+    scoreSelected = true;
 }

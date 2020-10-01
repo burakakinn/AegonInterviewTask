@@ -3,9 +3,7 @@ package com.aegon.interviewproject.api.survey.repository.domain;
 import com.aegon.interviewproject.common.entity.BaseEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "survey")
@@ -19,6 +17,9 @@ public class Survey extends BaseEntity {
     private double score;
 
     @Column(nullable = false, unique = true)
+    @NotNull
+    @NotBlank
+    @NotEmpty
     public String getTopic() {
         return topic;
     }
@@ -28,6 +29,9 @@ public class Survey extends BaseEntity {
     }
 
     @Column(nullable = false)
+    @NotNull
+    @NotBlank
+    @NotEmpty
     public String getQuestion() {
         return question;
     }

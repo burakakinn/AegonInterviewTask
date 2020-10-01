@@ -1,6 +1,7 @@
 package com.aegon.interviewproject.api.answer.controller.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -8,14 +9,13 @@ import javax.validation.constraints.PositiveOrZero;
 public class AnswerResultDTO {
 
     @NotNull
-    @NotBlank
     private int submitId; // could be UUID
     @NotNull
-    @NotBlank
     @PositiveOrZero
     private int score;
     @NotNull
     @NotBlank
+    @NotEmpty
     private String feedback;
 
     public int getSubmitId() {

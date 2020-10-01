@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
-    Survey findByTopic(String name);
+    Boolean existsByTopic(String topic);
 }

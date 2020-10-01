@@ -22,8 +22,12 @@ public class SurveyService {
         return repository.findById(id).orElse(null);
     }
 
-    public Survey findByTopic(String name){
-        return repository.findByTopic(name);
+    public Boolean existsByTopic(String name){
+        return repository.existsByTopic(name);
+    }
+
+    public Boolean existsById(int id){
+        return repository.existsById(id);
     }
 
     public Integer update(Survey survey){

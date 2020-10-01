@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/survey")
@@ -31,24 +32,27 @@ public class SurveyController {
 
     @PostMapping("/add")
     public ResponseEntity<Integer> add(@RequestBody SurveyDTO surveyDTO){
-        try {
-            if (surveyService.findByTopic(surveyDTO.getTopic()) != null) {
-                throw new Exception();
-            }
+        if (surveyService.existsByTopic(surveyDTO.getTopic())) {
+            System.err.println("Survey already exists!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1);
+        } else {
             Survey survey = surveyMapper.toEntity(surveyDTO);
             survey.setDetractors(0);
             survey.setPromoters(0);
             survey.setPassives(0);
             return ResponseEntity.status(HttpStatus.OK).body(surveyService.save(survey).getId());
-        } catch (Exception e) {
-            System.err.println("Survey already exists!");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1);
         }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SurveyDTO> get(@PathVariable int id){
-        return ResponseEntity.status(HttpStatus.OK).body(surveyMapper.toDTO(surveyService.findById(id)));
+        if(surveyService.existsById(id)){
+            return ResponseEntity.status(HttpStatus.OK).body(surveyMapper.toDTO(surveyService.findById(id)));
+        } else {
+            System.err.println("Survey doesnt exists!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
     }
 
     @GetMapping("/allResults")

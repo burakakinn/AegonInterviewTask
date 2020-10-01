@@ -5,6 +5,9 @@ import com.aegon.interviewproject.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -28,6 +31,7 @@ public class Answer extends BaseEntity {
 
     @Column(nullable = false)
     @PositiveOrZero
+    @NotNull
     public int getScore() {
         return score;
     }
@@ -37,6 +41,9 @@ public class Answer extends BaseEntity {
     }
 
     @Column(nullable = false)
+    @NotEmpty
+    @NotNull
+    @NotBlank
     public String getFeedback() {
         return feedback;
     }
